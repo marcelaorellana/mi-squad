@@ -1,16 +1,17 @@
-function miembroSquad(nombre, edad, hobbies){
+function miembroSquad(id, nombre, edad, hobbies){
+	this.id = id;
 	this.nombre = nombre;
 	this.edad = edad;
 	this.hobbies = hobbies;
 }
 
 var arr =[
-	new miembroSquad("Gaby Bravo", "28 años", ["pintar", "ver anime", "jugar Aion"]),
-	new miembroSquad("Karina Laroze", "21 años", ["bailar"]),
-	new miembroSquad("Mily Rivas", "18 años", ["leer", "ver películas"]),
-	new miembroSquad("Marcela Orellana", "31 años", ["Andar en Bicicleta", "ver series coreanas"]),
-	new miembroSquad("Angela Aliaga", "32 años", ["leer", "escuchar música", "jugar donkey kong country"]),
-	new miembroSquad("Dani Riesco", "35 años", ["ver películas"])
+	new miembroSquad("gaby","Gaby Bravo", "28 años", ["pintar", "ver anime", "jugar Aion"]),
+	new miembroSquad("karina","Karina Laroze", "21 años", ["bailar"]),
+	new miembroSquad("mily","Mily Rivas", "18 años", ["leer", "ver películas"]),
+	new miembroSquad("marcela","Marcela Orellana", "31 años", ["Andar en Bicicleta", "ver series coreanas"]),
+	new miembroSquad("angela","Angela Aliaga", "32 años", ["leer", "escuchar música", "jugar donkey kong country"]),
+	new miembroSquad("dani","Dani Riesco", "35 años", ["ver películas"])
 ];
 
 var miDiv = document.getElementById("miembras");
@@ -32,9 +33,11 @@ function mostrarSquad(value){
 
 	var comentario = document.createElement("textarea");
 	comentario.name = 'post';
-	comentario.id = "post";
+	comentario.id = value.id;
 
 	var parrafo5 = document.createElement("p");
+
+	var link = document.createElement("a");
 
 
 	var linea = document.createElement("hr");
@@ -66,7 +69,7 @@ function mostrarSquad(value){
     button.type = "button";
     button.value = "Comentar";
     button.onclick = function(){ 
-    	var coment = document.getElementById("post").value;
+    	var coment = document.getElementById(comentario.id).value;
     	var textAux5 = document.createTextNode(coment);
     	parrafo5.appendChild(textAux5);
     	divAux.appendChild(parrafo5);
