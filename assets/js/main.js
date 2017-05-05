@@ -30,6 +30,13 @@ function mostrarSquad(value){
 	var parrafo4 = document.createElement("p");
 	var textAux4 = document.createTextNode("Hobbies:");
 
+	var comentario = document.createElement("textarea");
+	comentario.name = 'post';
+	comentario.id = "post";
+
+	var parrafo5 = document.createElement("p");
+
+
 	var linea = document.createElement("hr");
 	divAux.appendChild(linea);
 
@@ -42,8 +49,6 @@ function mostrarSquad(value){
     parrafo4.appendChild(textAux4); 
     divAux.appendChild(parrafo4);
 
-    miDiv.appendChild(divAux);
-
  	value.hobbies.forEach(function(val){
  		var ul = document.createElement("ul");
 		var parrafo3 = document.createElement("li");
@@ -54,4 +59,20 @@ function mostrarSquad(value){
 		divAux.appendChild(ul);  
 
 	}); 
+
+	divAux.appendChild(comentario);
+
+	var button = document.createElement("input");
+    button.type = "button";
+    button.value = "Comentar";
+    button.onclick = function(){ 
+    	var coment = document.getElementById("post").value;
+    	var textAux5 = document.createTextNode(coment);
+    	parrafo5.appendChild(textAux5);
+    	divAux.appendChild(parrafo5);
+    	};
+    divAux.appendChild(button);
+
+    miDiv.appendChild(divAux);
+
 }
