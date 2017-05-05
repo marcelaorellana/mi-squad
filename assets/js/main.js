@@ -31,6 +31,7 @@ function mostrarSquad(value){
 	var textAux4 = document.createTextNode("Hobbies:");
 
 	var linea = document.createElement("hr");
+	divAux.appendChild(linea);
 
 	parrafo1.appendChild(textAux1); 
 	divAux.appendChild(parrafo1); 
@@ -40,8 +41,6 @@ function mostrarSquad(value){
 
     parrafo4.appendChild(textAux4); 
     divAux.appendChild(parrafo4);
-
-    divAux.appendChild(linea);
 
     miDiv.appendChild(divAux);
 
@@ -53,6 +52,6 @@ function mostrarSquad(value){
 		parrafo3.appendChild(textAux3);
 		ul.appendChild(parrafo3);
 		divAux.appendChild(ul);  
-		divAux.appendChild(linea);
+
 	}); 
 }
