@@ -6,12 +6,12 @@ function miembroSquad(id, nombre, edad, hobbies){
 }
 
 var arr =[
-	new miembroSquad("gaby","Gaby Bravo", "28 años", ["pintar", "ver anime", "jugar Aion"]),
-	new miembroSquad("karina","Karina Laroze", "21 años", ["bailar"]),
-	new miembroSquad("mily","Mily Rivas", "18 años", ["leer", "ver películas"]),
-	new miembroSquad("marcela","Marcela Orellana", "31 años", ["Andar en Bicicleta", "ver series coreanas"]),
-	new miembroSquad("angela","Angela Aliaga", "32 años", ["leer", "escuchar música", "jugar donkey kong country"]),
-	new miembroSquad("dani","Dani Riesco", "35 años", ["ver películas"])
+	new miembroSquad(1,"Gaby Bravo", "28 años", ["pintar", "ver anime", "jugar Aion"]),
+	new miembroSquad(2,"Karina Laroze", "21 años", ["bailar"]),
+	new miembroSquad(3,"Mily Rivas", "18 años", ["leer", "ver películas"]),
+	new miembroSquad(4,"Marcela Orellana", "31 años", ["Andar en Bicicleta", "ver series coreanas"]),
+	new miembroSquad(5,"Angela Aliaga", "32 años", ["leer", "escuchar música", "jugar donkey kong country"]),
+	new miembroSquad(6,"Dani Riesco", "35 años", ["ver películas"])
 ];
 
 var miDiv = document.getElementById("miembras");
@@ -36,11 +36,16 @@ function mostrarSquad(value){
 	comentario.id = value.id;
 
 	var parrafo5 = document.createElement("p");
+		parrafo5.id = "opinion";
+	var parrafo6 = document.createElement("p");
+	var cont = 0;
 
 	var link = document.createElement("a");
 
-
 	var linea = document.createElement("hr");
+
+	//var coment = [];
+
 	divAux.appendChild(linea);
 
 	parrafo1.appendChild(textAux1); 
@@ -66,16 +71,41 @@ function mostrarSquad(value){
 	divAux.appendChild(comentario);
 
 	var button = document.createElement("input");
-    button.type = "button";
-    button.value = "Comentar";
+	    button.type = "button";
+	    button.value = "Comentar";
     button.onclick = function(){ 
     	var coment = document.getElementById(comentario.id).value;
-    	var textAux5 = document.createTextNode(coment);
-    	parrafo5.appendChild(textAux5);
-    	divAux.appendChild(parrafo5);
-    	};
+    	var br = document.createElement("br");
+    
+    	parrafo5.innerHTML += coment + " <a href='#' onclick='showLikes("+ comentario.id +")'>" + " Me Gusta" +"</a>" + "<br>";
+    	var textAux6 = document.createTextNode(cont);
+    	
+    		/*var textAux5 = document.createTextNode(coment + "   ");
+    		var linkText = document.createTextNode("Me Gusta   ");
+	    	link.title = "my title text";
+			link.href = "#";
+			var br = document.createElement("br");
+
+	    	link.appendChild(linkText);
+			
+	    	parrafo5.appendChild(textAux5);
+
+	    	link.appendChild(br);
+	    	parrafo5.appendChild(link);
+	    	parrafo5.appendChild(br);*/
+	    	parrafo5.appendChild(textAux6);
+	    	parrafo5.appendChild(br);
+	    	
+	    	divAux.appendChild(parrafo5);
+    	   	
+
+    };
     divAux.appendChild(button);
 
     miDiv.appendChild(divAux);
+
+    function showLikes(){
+    	cont ++;
+    }
 
 }
