@@ -4,6 +4,7 @@ function miembroSquad(id, foto, nombre, edad, hobbies){
 	this.nombre = nombre;
 	this.edad = edad;
 	this.hobbies = hobbies;
+	this.coment = [];
 }
 
 var arr =[
@@ -17,108 +18,52 @@ var arr =[
 
 var miDiv = document.getElementById("miembras");
 
-var divAux, textAux1, textAux2, textAux3;
-var cont = 0;
-var textAux6;
 arr.forEach(mostrarSquad);
-
 function mostrarSquad(value){
 	var divAux = document.createElement("div");
 	var parrafo1 = document.createElement("p"); 
-	var textAux1 = document.createTextNode("Nombre: " + value.nombre);
-
-	var parrafo2 = document.createElement("p");
-	var textAux2 = document.createTextNode("Edad: " + value.edad );
-
-	var parrafo4 = document.createElement("p");
-	var textAux4 = document.createTextNode("Hobbies:");
-
-	var oImg = document.createElement("img");
-		oImg.setAttribute('src', value.foto);
-		oImg.setAttribute('alt', 'na');
-		oImg.setAttribute('height', '100px');
-		oImg.setAttribute('width', '100px');
-		
-
+	var ul = document.createElement("ul");
 	var comentario = document.createElement("textarea");
-	comentario.name = 'post';
-	comentario.id = value.id;
-
-	var parrafo5 = document.createElement("p");
-		parrafo5.id = "opinion";
-	var parrafo6 = document.createElement("p");
-	
-
-	var link = document.createElement("a");
-
-	var linea = document.createElement("hr");
-
-	//var coment = [];
-
-	divAux.appendChild(linea);
-
-	divAux.appendChild(oImg);
-
-	parrafo1.appendChild(textAux1); 
-	divAux.appendChild(parrafo1); 
-
-    parrafo2.appendChild(textAux2); 
-    divAux.appendChild(parrafo2);
-
-    parrafo4.appendChild(textAux4); 
-    divAux.appendChild(parrafo4);
-
- 	value.hobbies.forEach(function(val){
- 		var ul = document.createElement("ul");
-		var parrafo3 = document.createElement("li");
-		var textAux3 = document.createTextNode(val + "  ");
-
-		parrafo3.appendChild(textAux3);
-		ul.appendChild(parrafo3);
-		divAux.appendChild(ul);  
-
-	}); 
-
-	divAux.appendChild(comentario);
-
+		comentario.id = value.id;
 	var button = document.createElement("input");
 	    button.type = "button";
 	    button.value = "Comentar";
-    button.onclick = function(){ 
-    	var coment = document.getElementById(comentario.id).value;
-    	var br = document.createElement("br");
-    
-    	parrafo5.innerHTML += coment + " <a href='#' onclick='showLikes("+ comentario.id +")'>" + " Me Gusta" +"</a>" + "<br>";
-    	textAux6 = document.createTextNode(cont);
-    	
-    		/*var textAux5 = document.createTextNode(coment + "   ");
-    		var linkText = document.createTextNode("Me Gusta   ");
-	    	link.title = "my title text";
-			link.href = "#";
-			var br = document.createElement("br");
-	    	link.appendChild(linkText);
-	    	parrafo5.appendChild(textAux5);
-	    	link.appendChild(br);
-	    	parrafo5.appendChild(link);
-	    	parrafo5.appendChild(br);*/
-	    	parrafo5.appendChild(textAux6);
-	    	parrafo5.appendChild(br);
-	    	
-	    	divAux.appendChild(parrafo5);
-    	   	
 
-    };
-    divAux.appendChild(button);
+	parrafo1.innerHTML = "<img src=" + value.foto + " height='100' width='100'><br>"
+						+"<b>Nombre: </b>" + value.nombre + "<br>"
+						 + "<b>Edad: </b>" + value.edad + "<br>" 
+						 + "<b>Hobbies: </b>" ;
+	divAux.appendChild(parrafo1);
 
-    miDiv.appendChild(divAux);
+	value.hobbies.forEach(function(val){
+ 		var ul = document.createElement("ul");
+		var lista = document.createElement("li");
+		var text = document.createTextNode(val + "  ");
+		lista.appendChild(text);
+		ul.appendChild(lista);
+		divAux.appendChild(ul);
+		});
 
+	divAux.appendChild(comentario);
+	divAux.appendChild(button);
 
+	button.onclick = function(){
+		var comentarios = document.createElement("p");
+		var likes = document.createElement("a");
+			likes.href='#';
+		var br = document.createElement("br");
+
+		var coments = document.getElementById(comentario.id).value;
+		
+		var text = document.createTextNode(coments);
+		var text2 = document.createTextNode(" Me Gusta ");
+		likes.appendChild(text2);
+		comentarios.appendChild(text);
+		comentarios.appendChild(likes);
+		divAux.appendChild(comentarios);
+    	value.coment.push(coments);
+	}
+
+	miDiv.appendChild(divAux);
 
 }
-function showLikes(contId){
-		
-    	cont ++;
-    	
-    	textAux6.innerHTML = cont;
-    	console.log(cont);
-    }
