@@ -28,6 +28,7 @@ function mostrarSquad(value){
 	var button = document.createElement("input");
 	    button.type = "button";
 	    button.value = "Comentar";
+	
 
 	parrafo1.innerHTML = "<img src=" + value.foto + " height='100' width='100'><br>"
 						+"<b>Nombre: </b>" + value.nombre + "<br>"
@@ -48,20 +49,34 @@ function mostrarSquad(value){
 	divAux.appendChild(button);
 
 	button.onclick = function(){
+		var cont = 0;
+		var coments = document.getElementById(comentario.id).value;
+
 		var comentarios = document.createElement("p");
 		var likes = document.createElement("a");
 			likes.href='#';
 		var br = document.createElement("br");
-
-		var coments = document.getElementById(comentario.id).value;
-		
+		var cuenta = document.createElement("p");
+		var cuento = document.createTextNode(cont);
 		var text = document.createTextNode(coments);
 		var text2 = document.createTextNode(" Me Gusta ");
 		likes.appendChild(text2);
+		
+				
 		comentarios.appendChild(text);
 		comentarios.appendChild(likes);
 		divAux.appendChild(comentarios);
     	value.coment.push(coments);
+
+    	likes.onclick = function(coments){
+    		cont++;
+    		cuenta.innerHTML = "";
+    		cuento = document.createTextNode(cont);
+    		cuenta.appendChild(cuento);
+    		likes.appendChild(cuenta);
+    		
+    	}
+    	
 	}
 
 	miDiv.appendChild(divAux);
